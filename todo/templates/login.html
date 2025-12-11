@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Font Awesome 5 Brands:wght@400&display=swap" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="https://kit.fontawesome.com/cb792c0850.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="signup-login">
+        <div class="signup-box">
+            <form method="post">
+                {% csrf_token %}
+                <div class="heading">
+                    Login
+                </div>
+                <div class="line"></div>
+                {% if error %}
+                    <p class="error-msg">{{error}}</p>
+                {% endif %}
+                <div class="field">
+                    <b>Username</b>
+                    <input type="text" required class="inp" placeholder="Enter your username" name="fnm">
+                </div>
+                <div class="field">
+                    <b>Password</b>
+                    <input type="password" required class="inp" name="pwd" required>
+                </div>
+                <!-- When the user clicks login, browser sends POST /login/ with fnm and pwd. -->
+                <!-- view uses 'authenticate' to check user credentials and logs them in  -->
+                <div class="field">
+                    <input type="submit" class="submit-button" value="Login">
+                </div>
+            </form>
+            <div class="line"></div>
+            <div class="field">
+                <b style="margin-left:130px;">Don't have an account?</b>
+                <br>
+                <a class="anc" href="{% url 'signup' %}">Signup</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
